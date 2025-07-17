@@ -1,11 +1,20 @@
-// core module - inbuilt module
-var http = require('http')
-let {add,minus} = require('./calc')
-http.createServer((req,res)=>{
-    res.write('Hello2637452637')
-    add(20,35)
-    res.write("Minus is "+minus(45,25))
-    res.end()
-}).listen(5000,()=>{
-    console.log('listening to 5000 port...');  
+var express = require('express')
+var app = express()
+app.get('/',(req,res)=>{
+    res.send("<a href='/home'>Home</a> || <a href='/about'>About</a>")
+})
+app.get('/home',(req,res)=>{
+    console.log(__dirname);
+    
+    res.sendFile(__dirname+'/index.html')
+})
+app.get('/about',(req,res)=>{
+    console.log(__dirname);
+    
+    res.sendFile(__dirname+'/about.html')
+})
+
+app.listen(5000,()=>{
+    console.log('5000 port running..');
+    
 })
