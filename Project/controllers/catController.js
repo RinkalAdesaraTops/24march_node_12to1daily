@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb')
 const main = require('../models/catModel')
 const disp = async(req,res)=>{
     let connection = await main()
@@ -10,8 +11,7 @@ const disp = async(req,res)=>{
 
 }
 const ins = async(req,res)=>{
-    console.log(req.body);
-    
+    console.log(req.body);    
     let connection = await main()
     let db = connection.db
     let collection = db.collection('category') 
@@ -20,4 +20,15 @@ const ins = async(req,res)=>{
         res.redirect('/category/')
     }
 }
-module.exports = {ins,disp}
+const delData = async(req,res)=>{
+    let id = req.params.id
+    let connection = await main()
+    let db = connection.db
+    let collection = db.collection('category') 
+    let objId = new ObjectId(id)
+    let result = await collection.deleteOne({_id:objId})
+    if(result){
+        res.redirect('/category/')
+    }
+}
+module.exports = {ins,disp,delData}
