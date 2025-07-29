@@ -39,6 +39,7 @@
                   <!--end::Header-->
                   <!--begin::Form-->
                   <form name="frm" method="post" action="/category/add">
+                    <input type="hidden" name="catid" value="<%= (editcat!='')?editcat._id:''%>">
                     <!--begin::Body-->
                     <div class="card-body">
                       <div class="mb-3">
@@ -49,6 +50,7 @@
                           id="exampleInputEmail1"
                           aria-describedby="emailHelp"
                           name="catname"
+                          value="<%= (editcat!='')?editcat.catname:''%>"
                         />
                         
                       </div>
@@ -86,7 +88,10 @@
                           <tr>
                             <td><%= i._id%></td>
                             <td><%= i.catname%></td>
-                            <td><a href="/category/del/<%= i._id%>" class="btn btn-danger">Delete</a></td>
+                            <td>
+                              <a href="/category/edit/<%= i._id%>" class="btn btn-primary">Edit</a>
+                              <a href="/category/del/<%= i._id%>" class="btn btn-danger">Delete</a>
+                            </td>
                           </tr>
                         <% })%>
                       </tbody>

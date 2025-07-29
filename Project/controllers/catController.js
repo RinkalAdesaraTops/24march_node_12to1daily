@@ -6,7 +6,8 @@ const disp = async(req,res)=>{
     let collection = db.collection('category') 
     let alldata = await collection.find().toArray()
     res.render('category',{
-        "alldata":alldata
+        "alldata":alldata,
+        "editcat":''
     })
 
 }
@@ -15,7 +16,13 @@ const ins = async(req,res)=>{
     let connection = await main()
     let db = connection.db
     let collection = db.collection('category') 
-    let res1 = await collection.insertOne(req.body)
+    let id = new ObjectId(req.body.catid)
+    let res1
+    if(id!=''){
+        res1 = await collection.updateOne({_id:id},{$set:req.body})
+    } else {
+       res1 = await collection.insertOne(req.body)
+    }
     if(res1){
         res.redirect('/category/')
     }
@@ -31,4 +38,17 @@ const delData = async(req,res)=>{
         res.redirect('/category/')
     }
 }
-module.exports = {ins,disp,delData}
+const editData = async(req,res)=>{
+    let id = req.params.id
+    let connection = await main()
+    let db = connection.db
+    let collection = db.collection('category') 
+    let objId = new ObjectId(id)
+    let result = await collection.findOne({_id:objId})
+    let alldata = await collection.find().toArray()
+    res.render('category',{
+        "alldata":alldata,
+        "editcat":result
+    })
+}
+module.exports = {ins,disp,delData,editData}
