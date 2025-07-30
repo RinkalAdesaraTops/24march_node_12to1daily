@@ -84,9 +84,9 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <% alldata.map((i)=>{ %>
+                        <% alldata.map((i, _id)=>{ %>
                           <tr>
-                            <td><%= i._id%></td>
+                            <td><%= _id + 1 %></td>
                             <td><%= i.catname%></td>
                             <td>
                               <a href="/category/edit/<%= i._id%>" class="btn btn-primary">Edit</a>
