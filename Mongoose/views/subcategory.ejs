@@ -8,11 +8,11 @@
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">Category</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">subcategory</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Category</li>
+                  <li class="breadcrumb-item active" aria-current="page">subcategory</li>
                 </ol>
               </div>
             </div>
@@ -35,34 +35,33 @@
                 <!--begin::Quick Example-->
                 <div class="card card-primary card-outline mb-4">
                   <!--begin::Header-->
-                  <div class="card-header"><div class="card-title">Add Category</div></div>
+                  <div class="card-header"><div class="card-title">Add subcategory</div></div>
                   <!--end::Header-->
                   <!--begin::Form-->
-                  <form name="frm" method="post" action="/category/add">
-                    <input type="hidden" name="catid" value="<%= (editcat!='')?editcat._id:''%>">
+                  <form name="frm" method="post" action="/subcategory/add">
+                    <input type="hidden" name="subcatid" value="<%= (editsubcat!='')?editsubcat._id:''%>">
                     <!--begin::Body-->
                     <div class="card-body">
                       <div class="mb-3">
                         <label class="form-label">Category Name</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
-                          name="catname"
-                          value="<%= (editcat!='')?editcat.catname:''%>"
-                        />
+                        <select name="catid" id="catid" class="form-control">
+                            <option>--Select--</option>  
+                          <% catData.map((i)=>{ %>
+                                <option value=<%= i._id %> <%= (editsubcat && editsubcat.catid.equals(i._id))?'selected':'' %>><%= i.catname%></option>
+
+                            <% })%>
+                        </select>
                         
                       </div>
                       <div class="mb-3">
-                        <label class="form-label">SubCategory Name</label>
+                        <label class="form-label">Subcategory Name</label>
                         <input
                           type="text"
                           class="form-control"
                           id="exampleInputEmail1"
                           aria-describedby="emailHelp"
                           name="subcatname"
-                          value="<%= (editcat!='')?editcat.catname:''%>"
+                          value="<%= (editsubcat!='')?editsubcat.subcatname:''%>"
                         />
                         
                       </div>
@@ -83,14 +82,15 @@
               <!--begin::Col-->
               <div class="col-md-6">
                 <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">Category List</h3></div>
+                  <div class="card-header"><h3 class="card-title">subcategory List</h3></div>
                   <!-- /.card-header -->
                   <div class="card-body">
                     <table class="table table-bordered">
                       <thead>
                         <tr>
                           <th style="width: 10px">#</th>
-                          <th>Category</th>
+                          <th>category</th>
+                          <th>subcategory</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -98,10 +98,11 @@
                         <% alldata.map((i, _id)=>{ %>
                           <tr>
                             <td><%= _id + 1 %></td>
-                            <td><%= i.catname%></td>
+                            <td><%= i.catid.catname%></td>
+                            <td><%= i.subcatname%></td>
                             <td>
-                              <a href="/category/edit/<%= i._id%>" class="btn btn-primary">Edit</a>
-                              <a href="/category/del/<%= i._id%>" class="btn btn-danger">Delete</a>
+                              <a href="/subcategory/edit/<%= i._id%>" class="btn btn-primary">Edit</a>
+                              <a href="/subcategory/del/<%= i._id%>" class="btn btn-danger">Delete</a>
                             </td>
                           </tr>
                         <% })%>
