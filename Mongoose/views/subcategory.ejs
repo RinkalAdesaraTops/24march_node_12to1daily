@@ -44,14 +44,12 @@
                     <div class="card-body">
                       <div class="mb-3">
                         <label class="form-label">Category Name</label>
-                        <select name="catid" id="catid" class="form-control">
-                            <option>--Select--</option>  
+                        <select name="catid" class="form-control">
+                          <option value="">--Select Category--</option>
                           <% catData.map((i)=>{ %>
-                                <option value=<%= i._id %> <%= (editsubcat && editsubcat.catid.equals(i._id))?'selected':'' %>><%= i.catname%></option>
-
-                            <% })%>
+                              <option value="<%= i._id %>" <%= (editsubcat && editsubcat.catid.equals(i._id))?'selected':'' %>><%= i.catname %></option>
+                          <% })%>
                         </select>
-                        
                       </div>
                       <div class="mb-3">
                         <label class="form-label">Subcategory Name</label>
