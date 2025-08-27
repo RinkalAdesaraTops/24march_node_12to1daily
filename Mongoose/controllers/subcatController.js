@@ -1,5 +1,7 @@
 const catModel = require('../models/catModel')
 const subcatModel = require('../models/subcatModel')
+
+
 const disp = async(req,res)=>{
     let data = await subcatModel.find({}).populate('catid')
     let catData = await catModel.find({})
@@ -10,16 +12,17 @@ const disp = async(req,res)=>{
     })
 }
 const ins = async(req,res)=>{
-    let id = req.body.subcatid
-    let result
-    if(id!=''){
-        result = await subcatModel.findByIdAndUpdate(id,req.body)
-    } else {
-        result = await subcatModel.insertOne(req.body)
-    }
-    if(result){
-        res.redirect('/subcategory/')
-    }
+    console.log(req.file)
+    // let id = req.body.subcatid
+    // let result
+    // if(id!=''){
+    //     result = await subcatModel.findByIdAndUpdate(id,req.body)
+    // } else {
+    //     result = await subcatModel.insertOne(req.body)
+    // }
+    // if(result){
+    //     res.redirect('/subcategory/')
+    // }
 }
 const delData = async(req,res)=>{
     let id = req.params.id

@@ -8,7 +8,8 @@ const subcatSchema = new Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'category' // 'User' is the name of the Mongoose model       
   },
-  subcatname:String
+  subcatname:String,
+  subcatimage:String
 });
 const catModel = mongoose.model('subcategory', subcatSchema);
 module.exports = catModel
