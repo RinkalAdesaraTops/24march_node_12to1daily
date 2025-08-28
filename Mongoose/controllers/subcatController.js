@@ -12,17 +12,18 @@ const disp = async(req,res)=>{
     })
 }
 const ins = async(req,res)=>{
-    console.log(req.file)
-    // let id = req.body.subcatid
-    // let result
-    // if(id!=''){
-    //     result = await subcatModel.findByIdAndUpdate(id,req.body)
-    // } else {
-    //     result = await subcatModel.insertOne(req.body)
-    // }
-    // if(result){
-    //     res.redirect('/subcategory/')
-    // }
+ 
+    let id = req.body.subcatid
+    let result
+    req.body.subcatimage = req.file.filename
+    if(id!=''){
+        result = await subcatModel.findByIdAndUpdate(id,req.body)
+    } else {
+        result = await subcatModel.insertOne(req.body)
+    }
+    if(result){
+        res.redirect('/subcategory/')
+    }
 }
 const delData = async(req,res)=>{
     let id = req.params.id

@@ -91,6 +91,7 @@
                       <thead>
                         <tr>
                           <th style="width: 10px">#</th>
+                          <th>Image</th>
                           <th>category</th>
                           <th>subcategory</th>
                           <th>Action</th>
@@ -100,6 +101,7 @@
                         <% alldata.map((i, _id)=>{ %>
                           <tr>
                             <td><%= _id + 1 %></td>
+                            <td><img src="/uploads/<%= i.subcatimage%>" height="50px" width="50px"/></td>
                             <td><%= i.catid.catname%></td>
                             <td><%= i.subcatname%></td>
                             <td>
