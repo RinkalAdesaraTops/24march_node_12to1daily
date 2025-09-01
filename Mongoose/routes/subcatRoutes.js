@@ -9,8 +9,7 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     let getExtension = file.originalname.split('.')
-    console.log(getExtension);
-    
+    console.log(getExtension);   
     const uniqueSuffix = Date.now() + '.' + getExtension[1]
     cb(null, file.fieldname + '-' + uniqueSuffix)
   }
