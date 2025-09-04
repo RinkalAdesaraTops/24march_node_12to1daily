@@ -8,18 +8,17 @@ const storage = multer.diskStorage({
     cb(null, 'public/uploads')
   },
   filename: function (req, file, cb) {
-    let getExtension = file.originalname.split('.')
-    console.log(getExtension);   
+    let getExtension = file.originalname.split('.') 
     const uniqueSuffix = Date.now() + '.' + getExtension[1]
     cb(null, file.fieldname + '-' + uniqueSuffix)
   }
 })
 
 const upload = multer({ storage: storage })
-
-const {disp,ins,delData,editData} = require('../controllers/subcatController')
+const {disp,ins,delData,editData} = require('../controllers/Apicontroller')
+// const {disp,ins,delData,editData} = require('../controllers/subcatController')
 router.get('/',disp)
-router.get('/del/:id',delData)
+router.delete('/del/:id',delData)
 router.get('/edit/:id',editData)
 router.post('/add',upload.single('subcatimage'),ins)
 
