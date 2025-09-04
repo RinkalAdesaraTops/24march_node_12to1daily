@@ -1,7 +1,7 @@
 const catModel = require('../models/catModel')
 const subcatModel = require('../models/subcatModel')
 const fs = require('fs')
-
+//Api CRUD operation
 const disp = async (req, res) => {
     let data = await subcatModel.find({}).populate('catid')
     let catData = await catModel.find({})
