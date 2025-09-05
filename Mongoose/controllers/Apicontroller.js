@@ -1,12 +1,8 @@
 const catModel = require('../models/catModel')
 const subcatModel = require('../models/subcatModel')
 const fs = require('fs')
-<<<<<<< HEAD
 var jwt = require('jsonwebtoken');
 var secretKey = "test@123"
-=======
-//Api CRUD operation
->>>>>>> b424df1bf90e83c3582724fcb6e7bfe9e763cce7
 const disp = async (req, res) => {
     let data = await subcatModel.find({}).populate('catid')
     let catData = await catModel.find({})
