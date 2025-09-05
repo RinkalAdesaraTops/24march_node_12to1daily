@@ -1,7 +1,8 @@
 const catModel = require('../models/catModel')
 const subcatModel = require('../models/subcatModel')
 const fs = require('fs')
-
+var jwt = require('jsonwebtoken');
+var secretKey = "test@123"
 const disp = async (req, res) => {
     let data = await subcatModel.find({}).populate('catid')
     let catData = await catModel.find({})
@@ -57,7 +58,6 @@ const delData = async (req, res) => {
         }
         console.log("File deleted successfully!");
     })
-
     let result = await subcatModel.findByIdAndDelete(id)
     if (result) {
         return res.json({
@@ -75,5 +75,9 @@ const editData = async (req, res) => {
         "editsubcat": result,
         "catData": catData
     })
+}
+const login=(req,res)=>{
+    //check login
+    
 }
 module.exports = { ins, disp, delData, editData }
