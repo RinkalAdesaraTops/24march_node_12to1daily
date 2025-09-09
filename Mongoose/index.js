@@ -6,7 +6,11 @@ var userRoutes = require('./routes/userRoutes')
 app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
+// const verifyToken = (req,res,next)=>{
+//     let data = req.headers
+//     next()
 
+// }
 app.use('/category/',catRoutes)
 app.use('/subcategory/',subcatRoutes)
 app.use('/user/',userRoutes)
