@@ -1,10 +1,14 @@
 const catModel = require('../models/catModel')
 const disp = async(req,res)=>{
     let data = await catModel.find({})
-    res.render("category",{
+    return res.json({
         "alldata":data,
         "editcat":''
     })
+    // res.render("category",{
+    //     "alldata":data,
+    //     "editcat":''
+    // })
 }
 const ins = async(req,res)=>{
     let id = req.body.catid
