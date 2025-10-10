@@ -1,6 +1,11 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 const Products = () => {
+	let [allpr,setAllPr] = useState([])
+	useEffect(()=>{
+		axios.get("http://localhost:5000/category/")
+		.then((res)=>setAllPr(res.data.data))
+	},[])
   return (
     <>
     <div className="new_arrivals">
@@ -17,9 +22,16 @@ const Products = () => {
 					<div className="new_arrivals_sorting">
 						<ul className="arrivals_grid_sorting clearfix button-group filters-button-group">
 							<li className="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
-							<li className="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".women">women's</li>
+							{
+								allpr.map((i)=>{
+									return(
+										<li className="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter={"."+i.catname}>{i.catname}</li>
+									)
+								})
+							}
+							{/* <li className="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".women">women's</li>
 							<li className="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">accessories</li>
-							<li className="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men">men's</li>
+							<li className="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men">men's</li> */}
 						</ul>
 					</div>
 				</div>
