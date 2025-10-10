@@ -1,6 +1,5 @@
 
 import Home from './Home'
-
 function App() {
   return (
     <>
@@ -8,5 +7,4 @@ function App() {
     </>
   )
 }
-
 export default App
