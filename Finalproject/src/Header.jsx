@@ -80,7 +80,7 @@ const Header = () => {
 								<li className="checkout">
 									<a href="#">
 										<i className="fa fa-shopping-cart" aria-hidden="true"></i>
-										<span id="checkout_items" className="checkout_items">2</span>
+										<span id="checkout_items" className="checkout_items">5</span>
 									</a>
 								</li>
 							</ul>
