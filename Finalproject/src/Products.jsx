@@ -65,8 +65,22 @@ const Products = () => {
 		try {
 			console.log('Add to cart clicked:', product);
 			const existing = JSON.parse(localStorage.getItem('cart') || '[]');
-			const next = [...existing, { id: product?._id || product?.id || product?.prname, name: product?.prname || 'unknown', price: product?.prprice || null }];
-			localStorage.setItem('cart', JSON.stringify(next));
+			const pid = product?._id || product?.id || product?.prname;
+			const idx = existing.findIndex(item => item.id === pid);
+			if (idx > -1) {
+				// increment quantity
+				existing[idx].quantity = (existing[idx].quantity || 1) + 1;
+				localStorage.setItem('cart', JSON.stringify(existing));
+			} else {
+				const newItem = {
+					id: pid,
+					name: product?.prname || 'unknown',
+					price: product?.prprice || null,
+					quantity: 1
+				};
+				existing.push(newItem);
+				localStorage.setItem('cart', JSON.stringify(existing));
+			}
 		} catch (err) {
 			console.warn('Could not update cart', err);
 		}
